@@ -8,4 +8,4 @@
 `npm i`
 
 ## Running the project
-`npm start`
+`npm run start`
