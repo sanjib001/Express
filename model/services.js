@@ -23,7 +23,7 @@ const schema = new mongoose.Schema({
             message: '{VALUE} is not supported'
         }
     }
-});
+}, { timestamps: true });
 
 // Map the schema with collection
 const Model = mongoose.model('Service', schema);
