@@ -1,4 +1,5 @@
 import express from "express"
+import { getAllServices, getServicesByID, createServices, updateService, deleteService } from "../controller/services.js";
 
 const router = express.Router();
 
@@ -9,44 +10,10 @@ const router = express.Router();
 // PUT(update existing service), we need data of service in body, we need id in route. 
 // DELETE (Delete existing service), we need id in route
 
-router.get("/", (req, res) => {
-    res.send("You will receive all the services from the Database")
-})
-
-router.get("/:id", (req, res) => {
-    res.send(`You will recieve the services that matches the id: ${req.params.id}`)
-})
-
-router.post("/", (req, res) => {
-    const body = req.body;
-    onsole.log(body);
-    
-
-    //Call database to create a new resource
-
-    res.json({
-        "message": "Backend will create a new resources using the data sent",
-        "data": body
-    })
-})
-
-router.put("/:id", (req, res) => {
-    const body = req.body;
-    const id = req.params.id;
-
-    //Get the service data from database using id and update that service
-    // with the body passed in the request
-
-    res.json({
-        "messege": "Backend will update the existing resources using the data and id sent",
-        "data": body,
-        "id": id,
-    })
-})
-
-router.delete("/:id", (req, res) => {
-    //Connect with database & delete the resource
-    res.send(`Backend will delete the resource with id: ${req.params.id}`)
-})
+router.get("/", getAllServices)
+router.get("/:id", getServicesByID)
+router.post("/", createServices)
+router.put("/:id", updateService)
+router.delete("/:id", deleteService)
 
 export default router;
