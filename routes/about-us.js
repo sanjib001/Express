@@ -3,24 +3,23 @@ import express from "express"
 const router = express.Router();
 
 //Method for CRUD operation 
-// GET (get all services), we don't need anything in route or body.
-// GET (get service by id), we need id in route. 
-// POST(create new service), we need data of service in body.
-// PUT(update existing service), we need data of service in body, we need id in route. 
-// DELETE (Delete existing service), we need id in route
+// GET (get all about us), we don't need anything in route or body.
+// GET (get about us by id), we need id in route. 
+// POST(create new about us), we need data of about us in body.
+// PUT(update existing about us), we need data of about us in body, we need id in route. 
+// DELETE (Delete existing about us), we need id in route
 
 router.get("/", (req, res) => {
-    res.send("You will receive all the services from the Database")
+    res.send("You will receive all the about us from the Database")
 })
 
 router.get("/:id", (req, res) => {
-    res.send(`You will recieve the services that matches the id: ${req.params.id}`)
+    res.send(`You will recieve the about us that matches the id: ${req.params.id}`)
 })
 
 router.post("/", (req, res) => {
     const body = req.body;
-    onsole.log(body);
-    
+    console.log(body);
 
     //Call database to create a new resource
 
@@ -34,7 +33,7 @@ router.put("/:id", (req, res) => {
     const body = req.body;
     const id = req.params.id;
 
-    //Get the service data from database using id and update that service
+    //Get the about us data from database using id and update that about us
     // with the body passed in the request
 
     res.json({

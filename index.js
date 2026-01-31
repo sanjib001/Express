@@ -1,8 +1,9 @@
 import express from 'express'
 import mongoose from 'mongoose';
-import serviceRoute from "./routes/sercives.js"
 import bodyParser from 'body-parser';
 
+import serviceRoute from "./routes/sercives.js"
+import aboutRoute from "./routes/about-us.js"
 const app = express()
 
 app.use(bodyParser.json())
@@ -22,3 +23,4 @@ mongoose.connect('mongodb://127.0.0.1:27017/Anbyte')
   })
 
   app.use("/services", serviceRoute);
+  app.use("/about", aboutRoute);
