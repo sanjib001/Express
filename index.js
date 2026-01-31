@@ -1,7 +1,12 @@
 import express from 'express'
 import mongoose from 'mongoose';
+import serviceRoute from "./routes/sercives.js"
+import bodyParser from 'body-parser';
 
 const app = express()
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded())
 
 mongoose.connect('mongodb://127.0.0.1:27017/Anbyte')
   .then(() => {
@@ -12,14 +17,8 @@ mongoose.connect('mongodb://127.0.0.1:27017/Anbyte')
   })
   .catch((e) => console.log("failed to connect!!"));
 
-app.get('/', (req, res) => {
-  res.send('Hello World')
-})
+  app.get ("/", (req, res) =>{
+    res.send("Health check okay !!")
+  })
 
-app.get('/api', (req, res) => {
-  res.json({ "messange": "Hello from MERN stack class" })
-})
-
-app.get('/contact', (req, res) => {
-  res.json({ "messange": "Hello from MERN stack class" })
-})
+  app.use("/services", serviceRoute);
