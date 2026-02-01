@@ -1,4 +1,3 @@
-import { model } from 'mongoose'
 import Model from '../model/services.js'
 
 export const getAllServices = async (req, res) => {
@@ -22,7 +21,7 @@ export const getServicesByID = async (req, res) => {
         if (response) {
             return res.status(200).json(response)
         }
-        res.status(404).json({ "message": "The provided id is not a valid service id" })
+        res.status(404).json({ "message": "Cannot Fatech: The provided id is not a valid service id" })
 
     } catch (error) {
         res.status(400).json({
@@ -84,7 +83,7 @@ export const deleteService = async (req, res) => {
         }
 
         await Model.findByIdAndDelete(id);
-        res.status(200).json({ "message": `Sucessfully deleted the service of id: ${id}`})
+        res.status(200).json({ "message": `Sucessfully deleted the service of id: ${id}` })
     } catch (error) {
         res.status(400).json({
             "message": "Unable to delete the service",
