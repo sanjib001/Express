@@ -5,6 +5,8 @@ import bodyParser from 'body-parser';
 import serviceRoute from "./routes/sercives.js"
 import aboutRoute from "./routes/about-us.js"
 import herosectionRoute from "./routes/hero-section.js"
+import partnerRoute from "./routes/partner.js"
+
 const app = express()
 
 app.use(bodyParser.json())
@@ -26,3 +28,4 @@ mongoose.connect('mongodb://127.0.0.1:27017/Anbyte')
   app.use("/services", serviceRoute);
   app.use("/about", aboutRoute);
   app.use("/herosection", herosectionRoute);
+  app.use("/partner", partnerRoute);
