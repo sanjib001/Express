@@ -12,6 +12,7 @@ const app = express();
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded())
+app.use(express.static('public')); // use to serve static content(image,..) from BE to FE
 
 mongoose.connect('mongodb://127.0.0.1:27017/Anbyte')
   .then(() => {

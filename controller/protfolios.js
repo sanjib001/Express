@@ -33,6 +33,8 @@ export const getProtfolioByID = async (req, res) => {
 
 export const createProtfolio = async (req, res) => {
     const body = req.body;
+    const image = req.file ? req.file.filename : null;
+    body.image = image;
 
     try {
         const response = await Model.create(body)
@@ -51,6 +53,8 @@ export const createProtfolio = async (req, res) => {
 export const updateProtfolio = async (req, res) => {
     const body = req.body;
     const id = req.params.id;
+    const image = req.file ? req.file.filename : null;
+    body.image = image;
 
     try {
         const isServiceAvailable = await Model.findById(id);

@@ -16,7 +16,7 @@ const schema = mongoose.Schema({
     },
     tags: String,
     project_Link: String
-}, { timestamp: true });
+}, { timestamps: true });
 
 const Model = mongoose.model('Protfolio', schema);
 export default Model;
