@@ -32,6 +32,7 @@ export const getProtfolioByID = async (req, res) => {
 }
 
 export const createProtfolio = async (req, res) => {
+    const user = req.user;
     const body = req.body;
     const image = req.file ? req.file.filename : null;
     body.image = image;
