@@ -1,0 +1,11 @@
+2026-02-10T18:06:17.361Z [info]: Sucessfully provided protfolio
+2026-02-10T18:11:22.363Z [error]: CastError: Cast to ObjectId failed for value "hwgdw" (type string) at path "_id" for model "Protfolio"
+    at SchemaObjectId.cast (C:\Users\Dell\Downloads\Express\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaType.applySetters (C:\Users\Dell\Downloads\Express\node_modules\mongoose\lib\schemaType.js:1280:12)
+    at SchemaType.castForQuery (C:\Users\Dell\Downloads\Express\node_modules\mongoose\lib\schemaType.js:1706:17)
+    at cast (C:\Users\Dell\Downloads\Express\node_modules\mongoose\lib\cast.js:386:32)
+    at Query.cast (C:\Users\Dell\Downloads\Express\node_modules\mongoose\lib\query.js:5040:12)
+    at Query._castConditions (C:\Users\Dell\Downloads\Express\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._findOne (C:\Users\Dell\Downloads\Express\node_modules\mongoose\lib\query.js:2704:8)
+    at model.Query.exec (C:\Users\Dell\Downloads\Express\node_modules\mongoose\lib\query.js:4652:80)
+    at async getProtfolioByID (file:///C:/Users/Dell/Downloads/Express/controller/protfolios.js:22:26)

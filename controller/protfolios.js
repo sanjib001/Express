@@ -1,10 +1,13 @@
 import Model from "../model/protfolios.js";
+import logger from "../utils/logger.js";
 
 export const getAllProtfolios = async (req, res) => {
     try {
         const response = await Model.find()
+        logger.info("Sucessfully provided protfolio")
         res.status(200).json(response)
     } catch (error) {
+        logger.error("Ulable to provide profolio", error)
         res.status(400).json({
             "message": "Unable to fatch the protfolios.",
             "error": error
@@ -19,11 +22,13 @@ export const getProtfolioByID = async (req, res) => {
         const response = await Model.findById(id)
 
         if (response) {
+            logger.info(`Sucessfully provided protfolio of id: ${id}`)
             return res.status(200).json(response)
         }
         res.status(404).json({ "message": "Cannot Fatech: The provided id is not a valid protfolio id" })
 
     } catch (error) {
+        logger.error(`Ulable to provide profolio with id; ${id}`, error)
         res.status(400).json({
             "message": "Unable to Fatch the protfolio.",
             "error": error
