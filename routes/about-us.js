@@ -1,5 +1,6 @@
 import express from "express"
 import { getAboutUs, getAboutUsByID, createAboutUs, updateAboutUs, deleteAboutUs } from "../controller/about-us.js";
+import { auth } from "../middleware/auth.js";
 
 const router = express.Router();
 
@@ -12,8 +13,8 @@ const router = express.Router();
 
 router.get("/", getAboutUs)
 router.get("/:id", getAboutUsByID)
-router.post("/", createAboutUs)
-router.put("/:id", updateAboutUs)
-router.delete("/:id", deleteAboutUs)
+router.post("/", auth, createAboutUs)
+router.put("/:id", auth, updateAboutUs)
+router.delete("/:id", auth, deleteAboutUs)
 
 export default router;

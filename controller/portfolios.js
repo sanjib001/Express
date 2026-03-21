@@ -1,42 +1,42 @@
-import Model from "../model/protfolios.js";
+import Model from "../model/portfolios.js";
 import logger from "../utils/logger.js";
 
-export const getAllProtfolios = async (req, res) => {
+export const getAllPortfolios = async (req, res) => {
     try {
         const response = await Model.find()
-        logger.info("Sucessfully provided protfolio")
+        logger.info("Sucessfully provided portfolio")
         res.status(200).json(response)
     } catch (error) {
         logger.error("Ulable to provide profolio", error)
         res.status(400).json({
-            "message": "Unable to fatch the protfolios.",
+            "message": "Unable to fatch the portfolios.",
             "error": error
         })
     }
 }
 
-export const getProtfolioByID = async (req, res) => {
+export const getPortfolioByID = async (req, res) => {
     const id = req.params.id;
 
     try {
         const response = await Model.findById(id)
 
         if (response) {
-            logger.info(`Sucessfully provided protfolio of id: ${id}`)
+            logger.info(`Sucessfully provided portfolio of id: ${id}`)
             return res.status(200).json(response)
         }
-        res.status(404).json({ "message": "Cannot Fatech: The provided id is not a valid protfolio id" })
+        res.status(404).json({ "message": "Cannot Fatech: The provided id is not a valid portfolio id" })
 
     } catch (error) {
         logger.error(`Ulable to provide profolio with id; ${id}`, error)
         res.status(400).json({
-            "message": "Unable to Fatch the protfolio.",
+            "message": "Unable to Fatch the portfolio.",
             "error": error
         })
     }
 }
 
-export const createProtfolio = async (req, res) => {
+export const createPortfolio = async (req, res) => {
     const user = req.user;
     const body = req.body;
     const image = req.file ? req.file.filename : null;
@@ -45,18 +45,18 @@ export const createProtfolio = async (req, res) => {
     try {
         const response = await Model.create(body)
         res.status(201).json({
-            "message": "Sucessfully created a new protfolio",
+            "message": "Sucessfully created a new portfolio",
             "data": response
         })
     } catch (error) {
         res.status(400).json({
-            "message": "Unable to create new protfolio",
+            "message": "Unable to create new portfolio",
             "error": error
         })
     }
 }
 
-export const updateProtfolio = async (req, res) => {
+export const updatePortfolio = async (req, res) => {
     const body = req.body;
     const id = req.params.id;
     const image = req.file ? req.file.filename : null;
@@ -65,36 +65,36 @@ export const updateProtfolio = async (req, res) => {
     try {
         const isServiceAvailable = await Model.findById(id);
         if (!isServiceAvailable) {
-            return res.status(404).json({ "message": "Cannot Update: The provided id is not a valid protfolio id" })
+            return res.status(404).json({ "message": "Cannot Update: The provided id is not a valid portfolio id" })
         }
 
         await Model.findByIdAndUpdate(id, body, { new: true, runValidators: true })
         const response = await Model.findById(id);
         res.status(200).json({
-            "message": "Sucessfully updated the protfolio",
+            "message": "Sucessfully updated the portfolio",
             "data": response
         })
     } catch (error) {
         res.status(400).json({
-            "message": "Unable to update the protfolio",
+            "message": "Unable to update the portfolio",
             "error": error
         })
     }
 }
 
-export const deleteProtfolio = async (req, res) => {
+export const deletePortfolio = async (req, res) => {
     const id = req.params.id;
     try {
         const isServiceAvailable = await Model.findById(id);
         if (!isServiceAvailable) {
-            return res.status(404).json({ "message": "Cannot Delete: The provided id is not a valid protfolio id" })
+            return res.status(404).json({ "message": "Cannot Delete: The provided id is not a valid portfolio id" })
         }
 
         await Model.findByIdAndDelete(id);
-        res.status(200).json({ "message": `Sucessfully deleted the protfolio of id: ${id}` })
+        res.status(200).json({ "message": `Sucessfully deleted the portfolio of id: ${id}` })
     } catch (error) {
         res.status(400).json({
-            "message": "Unable to delete the protfolio",
+            "message": "Unable to delete the portfolio",
             "error": error
         })
     }

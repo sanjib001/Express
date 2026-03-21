@@ -1,6 +1,6 @@
 import express from "express"
 import { getAllServices, getServicesByID, createServices, updateService, deleteService } from "../controller/services.js";
-
+import { auth } from "../middleware/auth.js";
 const router = express.Router();
 
 //Method for CRUD operation 
@@ -12,8 +12,8 @@ const router = express.Router();
 
 router.get("/", getAllServices)
 router.get("/:id", getServicesByID)
-router.post("/", createServices)
-router.put("/:id", updateService)
-router.delete("/:id", deleteService)
+router.post("/", auth, createServices)
+router.put("/:id", auth, updateService)
+router.delete("/:id", auth, deleteService)
 
 export default router;
