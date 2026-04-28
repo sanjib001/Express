@@ -15,27 +15,29 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static('public'));
 
-// app.use((req, res, next) => {
-//     logger.info(`${req.method} ${req.url}`);
-//     next();
-// });
+const { CONNECTION_STRING } = process.env;
 
-const { DATABASE_HOST, DATABASE_PORT, DATABASE_NAME, APPLICATION_PORT, CONNECTION_STRING } = process.env;
+const PORT = process.env.PORT || process.env.APPLICATION_PORT || 8848;
 
-try {
-    await mongoose.connect(CONNECTION_STRING, {
-        dbName: 'antbyte'
-    })
-    app.listen(APPLICATION_PORT, () => {
-        console.log(`Server is running on http://localhost:${APPLICATION_PORT}`)
-    })
-    console.log('Successfully connected with database')
-} catch (e) {
-    console.log("failed to connect")
+const startServer = async () => {
+    try {
+        await mongoose.connect(CONNECTION_STRING, {
+            dbName: 'antbyte'
+        })
+        console.log('Successfully connected with database')
+
+        app.listen(PORT, '0.0.0.0', () => {
+            console.log(`Server is running on http://localhost:${PORT}`)
+        })
+
+    } catch (e) {
+        console.log("failed to connect", e.message)
+    }
 }
 
+startServer()
 
-
+// Routes
 app.get("/", (req, res) => {
     res.send("Health check okay!!")
 })
