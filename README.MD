@@ -9,3 +9,8 @@
 
 ## Running the project
 `npm run start`
+
+## Deployment
+1. Database => MangoDB atlas
+2. Backend => Render
+3. Frontend => 
